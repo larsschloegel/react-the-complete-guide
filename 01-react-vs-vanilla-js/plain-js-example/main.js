@@ -27,8 +27,7 @@ function displayPokemon(pokemonList) {
         pokemonDiv.innerHTML = `
         <img src="${details.sprites.other?.['official-artwork']?.front_default}" alt="${details.name}" onerror="this.src='${details.sprites.front_default}';">
         <div class="pokemon-details">
-          <h2>${details.name}</h2>
-          <p>ID: ${details.id}</p>
+          <h2>${details.id}: ${details.name}</h2>
         </div>
       `;
 
@@ -37,6 +36,9 @@ function displayPokemon(pokemonList) {
       .catch(error => {
         console.error('Fehler beim Abrufen der Pokémon-Details:', error);
       });
+  });
+  Promise.all(fetchDetails).catch(error => {
+    console.error('Fehler beim Abrufen der Pokémon-Details:', error);
   });
 }
 

@@ -1,33 +1,59 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [offset, setOffset] = useState(0);
+  const [pokemonList, setPokemonList] = useState([]);
+  const limit = 20;
+
+  useEffect(() => {
+    fetchPokemon();
+  }, [offset]);
+
+  const fetchPokemon = async () => {
+    try {
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
+      const data = await response.json();
+      const detailedPokemonList = await Promise.all(
+        data.results.map(async (pokemon) => {
+          const detailsResponse = await fetch(pokemon.url);
+          const details = await detailsResponse.json();
+          return details;
+        })
+      );
+      setPokemonList((prevList) => [...prevList, ...detailedPokemonList]);
+    } catch (error) {
+      console.error('Fehler beim Abrufen der Pokémon:', error);
+    }
+  };
+
+  const loadMorePokemon = () => {
+    setOffset((prevOffset) => prevOffset + limit);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <header>
+        <h1>Build with React</h1>
+        <img src={reactLogo} className="logo react" alt="React logo" />
+      </header>
+      <div id='pokemon-container' className='container'>
+      {pokemonList.map((pokemon, index) => (
+          <div key={`${pokemon.id}-${index}`} className="pokemon">
+            <img
+              src={pokemon.sprites.other?.['official-artwork']?.front_default || pokemon.sprites.front_default}
+              alt={pokemon.name}
+            />
+            <div className="pokemon-details">
+              <h2>{pokemon.id}: {pokemon.name}</h2>
+            </div>
+          </div>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className='buttonSection'>
+      <button onClick={loadMorePokemon}>Mehr laden</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
