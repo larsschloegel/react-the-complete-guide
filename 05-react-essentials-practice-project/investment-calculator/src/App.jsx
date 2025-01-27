@@ -4,8 +4,8 @@ import InvestmentInput from "./components/InvestmentInput"
 function App() {
   return (
     <>
-    <Header/>
-    <InvestmentInput></InvestmentInput>
+      <Header />
+      <InvestmentInput />
     </>
   )
 }
