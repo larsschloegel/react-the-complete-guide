@@ -6,8 +6,8 @@ import { WINNING_COMBINATIONS } from "./winning-combinations";
 import GameOver from "./components/GameOver";
 
 const PLAYERS = {
-    X: 'Player 1',
-    O: 'Player 2'
+  X: 'Player 1',
+  O: 'Player 2'
 }
 const INITIAL_GAME_BOARD = [
   [null, null, null],
@@ -34,7 +34,7 @@ function deriveGameBoard(gameTurns) {
   return gameBoard;
 }
 
-function deriveWinner(gameBoard, players){
+function deriveWinner(gameBoard, players) {
   let winner;
 
   for (const combination of WINNING_COMBINATIONS) {
@@ -85,8 +85,8 @@ function App() {
     <main>
       <div id="game-container">
         <ol id="players" className="highlight-player">
-          <Player initialName={PLAYERS.X} symbol={"X"} isActive={activePlayer === 'X'} onChangeName= {handlePlayerNameChange}/>
-          <Player initialName={PLAYERS.O} symbol={"O"} isActive={activePlayer === 'O'} onChangeName= {handlePlayerNameChange}/>
+          <Player initialName={PLAYERS.X} symbol={"X"} isActive={activePlayer === 'X'} onChangeName={handlePlayerNameChange} />
+          <Player initialName={PLAYERS.O} symbol={"O"} isActive={activePlayer === 'O'} onChangeName={handlePlayerNameChange} />
         </ol>
         {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestart} />}
         <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
