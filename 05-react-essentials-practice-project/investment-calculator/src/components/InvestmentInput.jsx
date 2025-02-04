@@ -1,4 +1,4 @@
-export default function InvestmentInput({onChange, investmentInput}) {
+export default function InvestmentInput({onChange, investmentInputs}) {
         return (
                 <section id="user-input">
                         <div className="input-group">
@@ -7,8 +7,8 @@ export default function InvestmentInput({onChange, investmentInput}) {
                                         <input 
                                         type="number" 
                                         required 
-                                        onChange={(e) => onChange('initialInvestement', e.target.value)} 
-                                        value={investmentInput.initialInvestement} />
+                                        onChange={(e) => onChange('initialInvestment', e.target.value)} 
+                                        value={investmentInputs.initialInvestment} />
                                 </p>
                                 <p>
                                         <label>Annual Investment</label>
@@ -16,7 +16,7 @@ export default function InvestmentInput({onChange, investmentInput}) {
                                         type="number" 
                                         required 
                                         onChange={(e) => onChange('annualInvestment', e.target.value)} 
-                                        value={investmentInput.annualInvestment} />
+                                        value={investmentInputs.annualInvestment} />
                                 </p>
                         </div>
                         <div className="input-group">
@@ -26,7 +26,7 @@ export default function InvestmentInput({onChange, investmentInput}) {
                                         type="number" 
                                         required 
                                         onChange={(e) => onChange('expectedReturn', e.target.value)} 
-                                        value={investmentInput.expectedReturn} />
+                                        value={investmentInputs.expectedReturn} />
                                 </p>
                                 <p>
                                         <label>Duration</label>
@@ -34,7 +34,7 @@ export default function InvestmentInput({onChange, investmentInput}) {
                                         type="number" 
                                         required 
                                         onChange={(e) => onChange('duration', e.target.value)} 
-                                        value={investmentInput.duration} />
+                                        value={investmentInputs.duration} />
                                 </p>
                         </div>
                 </section>
