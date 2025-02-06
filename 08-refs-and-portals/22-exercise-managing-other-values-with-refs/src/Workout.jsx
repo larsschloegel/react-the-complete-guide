@@ -4,18 +4,12 @@ export default function Workout({ title, description, time, onComplete }) {
     const timer = useRef();
 
     function handleStartWorkout() {
-        timer.current = setInterval(function () {
-            time--;
-            console.log(time);
-            if (time === 0) {
-                clearInterval(timer);
-                console.log("Countdown finished");
-            }
-        }, 1000);
+        timer.current = setTimeout(handleStopWorkout, time);
     }
 
     function handleStopWorkout() {
-        clearInterval(timer.current);
+        console.log(timer.current);
+        clearTimeout(timer.current);
         onComplete();
     }
 
