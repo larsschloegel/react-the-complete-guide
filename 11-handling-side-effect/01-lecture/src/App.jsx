@@ -11,7 +11,7 @@ const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
 const storedPlaces = storedIds.map((id) => AVAILABLE_PLACES.find((place) => place.id === id));
 
 function App() {
- const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const selectedPlace = useRef();
   const [availablePlaces, setAvailablePlaces] = useState([]);
   const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
@@ -43,7 +43,7 @@ function App() {
       return [place, ...prevPickedPlaces];
     });
     const storedIds = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
-    if (storedIds.indexOf(id)=== -1) {
+    if (storedIds.indexOf(id) === -1) {
       localStorage.setItem('selectedPlaces', JSON.stringify([id, ...storedIds]));
     }
   }
@@ -61,12 +61,13 @@ function App() {
   return (
     <>
       <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
-        <DeleteConfirmation
-          onCancel={handleStopRemovePlace}
-          onConfirm={handleRemovePlace}
-        />
+        {modalIsOpen &&
+          <DeleteConfirmation
+            onCancel={handleStopRemovePlace}
+            onConfirm={handleRemovePlace}
+          />
+        }
       </Modal>
-
       <header>
         <img src={logoImg} alt="Stylized globe" />
         <h1>PlacePicker</h1>
