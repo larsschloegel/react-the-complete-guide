@@ -32,7 +32,7 @@ export default function Quiz() {
                 key={activeQuestionIndex}
                 index={activeQuestionIndex}
                 onSelectAnswer={handleSelectAnswer}
-                onSkipAnswer={handleSelectAnswer}
+                onSkipAnswer={handleSkipAnswer}
             />
         </div>
     )
