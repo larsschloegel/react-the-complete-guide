@@ -10,6 +10,8 @@ function App() {
 
   function handleSetCount(newCount) {
     setChosenCount(newCount);
+    //console.log(chosenCount);
+    //setChosenCount((count) => count + 1);
   }
 
   return (
