@@ -20,7 +20,7 @@ export function NewOpinion() {
       errors.push('Please enter a title.')
     }
 
-    if (!title.trim()) {
+    if (!body.trim()) {
       errors.push('Please enter a body.')
     }
   
