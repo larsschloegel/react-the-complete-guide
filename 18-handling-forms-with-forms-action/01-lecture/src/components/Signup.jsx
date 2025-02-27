@@ -149,9 +149,9 @@ export default function Signup() {
         </label>
       </div>
 
-      {formState.errors && <ul className='error'>
+      {formState.errors && (<ul className='error'>
         {formState.errors.map(error => <li key={error}>{error}</li>)}
-      </ul>}
+      </ul>)}
 
       <p className="form-actions">
         <button type="reset" className="button button-flat">
