@@ -1,35 +1,44 @@
+import { use } from 'react';
 import { useActionState } from 'react';
+import { OpinionsContext } from '../store/opinions-context'
 
-function newOpinionAction(prevFormState, formData) {
-  const userName = formData.get('userName');
-  const title = formData.get('title');
-  const body = formData.get('body');
-
-  let errors = [];
-
-  if (!userName.trim()) {
-    errors.push('Please enter your name.')
-  }
-
-  if (!title.trim() !== '') {
-    errors.push('Please enter a title.')
-  }
-
-
-  if (errors.length > 0) {
-    return {
-      errors, enteredValue: {
-        userName,
-        title,
-        body,
-      },
-    };
-  }
-
-  return { errors: null }
-
-}
 export function NewOpinion() {
+  const { addOpinion } = use(OpinionsContext);
+  
+  async function newOpinionAction(prevFormState, formData) {
+    const userName = formData.get('userName');
+    const title = formData.get('title');
+    const body = formData.get('body');
+  
+    let errors = [];
+  
+    if (!userName.trim()) {
+      errors.push('Please enter your name.')
+    }
+  
+    if (!title.trim()) {
+      errors.push('Please enter a title.')
+    }
+
+    if (!title.trim()) {
+      errors.push('Please enter a body.')
+    }
+  
+  
+    if (errors.length > 0) {
+      return {
+        errors, enteredValues: {
+          userName,
+          title,
+          body,
+        },
+      };
+    }
+  
+    await addOpinion({ title, body, userName });
+    return { errors: null }
+  
+  }
   const [formState, formAction, pending] = useActionState(newOpinionAction, { errors: null });
 
   return (
@@ -39,17 +48,17 @@ export function NewOpinion() {
         <div className="control-row">
           <p className="control">
             <label htmlFor="userName">Your Name</label>
-            <input type="text" id="userName" name="userName" defaultValue={formState.enteredValue?.userName} />
+            <input type="text" id="userName" name="userName" defaultValue={formState.enteredValues?.userName} />
           </p>
 
           <p className="control">
             <label htmlFor="title">Title</label>
-            <input type="text" id="title" name="title" defaultValue={formState.enteredValue?.title} />
+            <input type="text" id="title" name="title" defaultValue={formState.enteredValues?.title} />
           </p>
         </div>
         <p className="control">
           <label htmlFor="body">Your Opinion</label>
-          <textarea id="body" name="body" rows={5} defaultValue={formState.enteredValue?.body}></textarea>
+          <textarea id="body" name="body" rows={5} defaultValue={formState.enteredValues?.body}></textarea>
         </p>
 
         {formState.errors && (
