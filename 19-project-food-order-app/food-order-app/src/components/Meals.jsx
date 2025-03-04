@@ -8,7 +8,7 @@ export function Meals() {
     return (
         <ul id="meals">
             {meals && meals.map((meal) => (
-                    <li key={meal.id}>
+                    <li key={meal.id} className="meal-item">
                         <Meal meal={meal} />
                     </li>
                 ))}
