@@ -20,7 +20,7 @@ export default function Cart() {
         userProgress.showCheckout();
     }
 
-    return <Modal className="cart" open={userProgress.progress === 'cart'} onClose={handleCloseCart}>
+    return <Modal className="cart" open={userProgress.progress === 'cart'} onClose={userProgress.progress === 'cart' ? handleCloseCart : null}>
         <h2>Your Cart</h2>
         <ul>
             {cart.items.map((item) => (
