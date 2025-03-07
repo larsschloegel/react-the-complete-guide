@@ -5,12 +5,12 @@ import {useSelector} from "react-redux";
 
 function App() {
     const cartIsVisible = useSelector((state) => state.cart.cartIsVisible);
-  return (
-    <Layout>
-        {cartIsVisible && <Cart />}
-      <Products />
-    </Layout>
-  );
+    return (
+        <Layout>
+            {cartIsVisible && <Cart/>}
+            <Products/>
+        </Layout>
+    );
 }
 
 export default App;
