@@ -3,9 +3,9 @@ import {useLoaderData} from "react-router";
 
 function EventsPage() {
     const data = useLoaderData();
-    if (data.isError) {
+/*    if (data.isError) {
         return <p>{data.message}</p>
-    }
+    }*/
 
     const events = data.events;
     return (
@@ -22,7 +22,7 @@ export async function loader() {
 
     if (!response.ok) {
         //return {isError: true, message: 'Unable to load events.'};
-        throw {message: 'Unable to load events.'};
+        throw new Response(JSON.stringify({message: 'Unable to load events.'}), {status: 500});
     } else {
         return response;
     }
