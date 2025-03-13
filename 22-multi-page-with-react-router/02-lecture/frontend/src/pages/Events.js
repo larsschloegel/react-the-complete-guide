@@ -1,5 +1,5 @@
 import EventsList from '../components/EventsList';
-import {useLoaderData} from "react-router";
+import {useLoaderData } from "react-router";
 
 function EventsPage() {
     const data = useLoaderData();
@@ -22,7 +22,9 @@ export async function loader() {
 
     if (!response.ok) {
         //return {isError: true, message: 'Unable to load events.'};
-        throw new Response(JSON.stringify({message: 'Unable to load events.'}), {status: 500});
+        //throw new Response(JSON.stringify({message: 'Unable to load
+        // events.'}), {status: 500});
+        return Response.json({message: 'Unable to load events.'}, {status: 200});
     } else {
         return response;
     }
