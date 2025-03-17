@@ -38,6 +38,12 @@ person = {
 
 // Type inference
 
-let course = 'React - Them Complete Guide';
+//let course = 'React - Them Complete Guide';
 
 //course = 12341;
+
+//Using Union Types
+
+let course: string | number = 'React - Them Complete Guide';
+
+course = 12341;
