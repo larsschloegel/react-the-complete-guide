@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-        <Todos/>
+        <Todos items={['Lean React', 'Learn Typescript']}/>
     </>
   )
 }
