@@ -47,3 +47,10 @@ person = {
 let course: string | number = 'React - Them Complete Guide';
 
 course = 12341;
+
+type Person = {
+    name: string;
+    age: number;
+}
+
+let person1: Person;
