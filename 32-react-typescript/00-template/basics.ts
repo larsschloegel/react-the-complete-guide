@@ -35,3 +35,9 @@ person = {
 /*person = {
     isEmployee: true,
 }*/
+
+// Type inference
+
+let course = 'React - Them Complete Guide';
+
+//course = 12341;
